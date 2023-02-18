@@ -1,22 +1,20 @@
 describe('Check user Form', () => {
 
-  beforeEach(() => {
-      cy.visit('https://testpages.herokuapp.com/styled/index.html');
+    beforeEach(() => {
       cy.get("#htmlformtest").click();
-
-  });
+    });
 
   it('From Page is displayed', () => {
 
       cy.get("h1").then(($title) => {
           expect($title).to.have.text("Basic HTML Form Example");
-      });
+      })
 
       cy.get("#HTMLFormElements").should('be.visible');
 
   });
 
-  it('Submit correct form', () => {
+  it('Submit correct form successfully', () => {
 
         var username = "Jihene";
         var password = "Pass1";
@@ -35,6 +33,15 @@ describe('Check user Form', () => {
 
         cy.get("#_valueusername").then(($usernameresult) => {
             expect($usernameresult).to.have.text(username);
+        });
+  })
+
+   it('Submit Empty form successfully', () => {
+
+        cy.get('input[Value="submit"]').click();
+
+        cy.get("h2").then(($title) => {
+            expect($title).to.have.text("Submitted Values");
         });
    })
 
